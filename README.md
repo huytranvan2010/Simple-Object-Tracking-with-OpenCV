@@ -22,10 +22,13 @@ Centroid tracking algorithm là quá trình nhiều bước (multi-step).
 * **Bước 1:** Accept bounding box coordinates and compute centroids
 
 Lấy tọa độ của bounding boxes từ object detector sau đó sử dụng chúng để xác định centroids. Object detector có thể là HOG + Linear SVM, SSDs, Faster R-CNN... Do đây là các bounding box được tạo đầu tiên nên ta sẽ gán cho chúng ID duy nhất.
+
 ![Step1](images/1.png)
+
 * **Bước 2:** Xác định Euclidean distance between new bounding boxes and existing objects
 
 Cho các frame tiếp theo trong video chúng ta thực hiện lại **Bước 1** để xác định centroids (*Việc này quan trong có nghĩa rằng trong mỗi frame chúng ta đều thực hiện object detection*). Tuy nhiên thay vì gán ID duy nhất mới cho các vật thể phát hiện được (không còn là object tracking) chúng ta cần xác định nếu có sự liên quan giữa `new object centroid` và `old object centroid` không. Để thực hiện điều này chúng ta đi tính Euclidean distance giữa các cặp existing object centroids và input object centroids (không xác định khoảng cách giữa các existing object centroids hay giữa các input object centroids - việc này không có ý nghĩa)
+
 ![Step2](images/2.png)
 
 * **Bước 3:** Update (x, y) cooordinates of existing objects
@@ -54,4 +57,8 @@ Sau đó có thể quay lại **bước 2** để lặp lại đối với các 
  * Khởi tạo CentroidTracker và sử dụng nó để tarck đối tượng
  * Hiển thị kết quả
 
+# **Giới hạn của phương pháp**
+- Cần thực hiện object detection trong các khung hình liên tục gây tốn tài nguyên tính toán
+- Yêu cầu các centroid của các objects phải gần nhau trong các khung hình liên tiếp
+- Có thể có sự hoán đổi ID nếu các object quá gần nhau
  
