@@ -35,6 +35,7 @@ Cho các frame tiếp theo trong video chúng ta thực hiện lại **Bước 1
 
 Giả sử chính của centroid tracking algorithm là vật thể có thể di chuyển giữa các frames nhưng khoảng các centroids trong các frame `F_t và F_t+1` sẽ nhỏ hơn tất cả khoảng cách khác giữa objects trong 2 frames đó.
 Do đó nếu chúng ta liên kết các centroids với khoảng cách nhỏ nhất giữa các frames liên tiếp chúng ta có thể thực hiện được object tracking.
+
 ![Step3](images/3.png)
 
 Chúng ta đã liên kết được 2 objects, còn object mới thì sao?
